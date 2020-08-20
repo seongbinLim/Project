@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+
+	<!-- 게시글 전체 조회 -->
+	<select id="selectQnA" resultType="com.ssafy.dto.QnA">
+		SELECT qna_no as qnaNo,
+		qna_title as qnaTitle,
+		qna_content as qnaContent,
+		qna_userid as qnaUserid,
+		qna_datetime as qnaDatetime
+		FROM qna_board
+		ORDER BY qna_no desc
+	</select>
+	<insert id="createQnA" parameterType="com.ssafy.dto.QnA">
+		INSERT INTO 
+		qna_board(qna_title, qna_content, qna_userid)
+		VALUES(#{qnaTitle}, #{qnaContent}, #{qnaUserid})
+	</insert>
+	<update id="updateQnA" parameterType="com.ssafy.dto.QnA">
+		UPDATE qna_board
+		SET qna_title = #{qnaTitle},
+			qna_content = #{qnaContent}
+		WHERE qna_no = #{qnaNo} 
+	</update>
+	<select id="searchQnA" parameterType="String" resultType="com.ssafy.dto.QnA">
+		SELECT  qna_no as qnaNo,
+				qna_title as qnaTitle,
+				qna_content as qnaContent,
+				qna_userid as qnaUserid,
+				qna_datetime as qnaDatetime
+		FROM qna_board
+		WHERE qna_title LIKE CONCAT('%',#{qnaTitle}, '%')
+		ORDER BY qna_no desc
+	</select>
+		<select id="searchQnAbyNo" parameterType="int" resultType="com.ssafy.dto.QnA">
+		SELECT  qna_no as qnaNo,
+				qna_title as qnaTitle,
+				qna_content as qnaContent,
+				qna_userid as qnaUserid,
+				qna_datetime as qnaDatetime
+		FROM qna_board
+		WHERE qna_no = #{qnaNo}
+		ORDER BY qna_no desc
+	</select>
+	<delete id="deleteQnA" parameterType="Integer">
+		DELETE FROM qna_board
+		WHERE qna_no = #{qnaNo}
+	</delete>
+</mapper>
+

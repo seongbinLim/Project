@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+		<mapper resource="mappers/commerce.xml" />
+		<mapper resource="mappers/env.xml" />
+		<mapper resource="mappers/house.xml" />
+		<mapper resource="mappers/notice.xml" />
+		<mapper resource="mappers/RegionMapper.xml"/>
+		<mapper resource="mappers/userMapper.xml" />
+		<mapper resource="mappers/airpolluteMapper.xml" />
+		<mapper resource="mappers/housedepositMapper.xml" />
+		<mapper resource="mappers/qna.xml" />
+	</mappers>
+</configuration>
+
+

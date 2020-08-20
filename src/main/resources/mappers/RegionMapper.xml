@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/hrm.xml -->
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SelectedRegion"> <!-- mybatis는 namespace필수!! -->
+	<select id="selectedRegion" parameterType="String" resultType="com.ssafy.dto.SelectedRegion">
+		select no, userid, regionno
+		from selectedregion
+		where userid=#{userid}
+	</select>
+
+
+	<insert id="insertSelectedRegion" parameterType="Map">
+		insert into selectedregion(userId, regionno)
+		values( #{userId}, #{regionno});
+	</insert>
+	
+	<select id="selectRegion" resultType="com.ssafy.dto.Region">
+		select no, region
+		from region
+	</select>
+	
+</mapper>
+
+
+

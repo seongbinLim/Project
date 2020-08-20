@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/hrm.xml -->
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="housedeposit"> <!-- mybatis는 namespace필수!! -->
+	<select id="selectAll" resultType="com.ssafy.dto.HouseDeposit">
+		SELECT *
+		FROM housedeposit
+		ORDER BY no
+	</select>
+	<select id="selectByHouseInfo" resultType="com.ssafy.dto.HouseDeposit" parameterType="Integer">
+		SELECT *
+		FROM housedeposit
+		WHERE no = #{no}
+	</select>
+	<update id="updateByNo" parameterType="Integer">
+		UPDATE housedeposit
+		SET isreserved = true
+		WHERE no = #{no}
+	</update>
+</mapper>
+
+
+

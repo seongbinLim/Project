@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/hrm.xml -->
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user"> <!-- mybatis는 namespace필수!! -->
+	<select id="login" parameterType="com.ssafy.dto.User" resultType="com.ssafy.dto.User">
+		select *
+		from user
+		where userId=#{userId} and userPwd=#{userPwd}
+	</select>
+
+
+	<select id="searchpw" parameterType="String" resultType="com.ssafy.dto.User">
+		select userId, userPwd
+		from user
+		where userId=#{userId}
+	</select>
+	
+	<select id="selectUserInfo" parameterType="String" resultType="com.ssafy.dto.User">
+		select userId, userName, userBirth, userPhone, userArea, userPwd
+		from user
+		where userId=#{userId}
+	</select>
+	
+	<select id="viewUserList" parameterType="map" resultType="com.ssafy.dto.User">
+		select userName, userId, userBirth, userPhone, userArea
+		from user
+		<if test="key.equals('id')">
+		where userId like ${word}
+		</if>
+		<if test="key.equals('name')">
+		where userName like ${word}
+		</if>
+		<if test="key.equals('area')">
+		where userArea like ${word}
+		</if>				
+	</select>
+	
+	<insert id="insertUserInfo" parameterType="com.ssafy.dto.User">
+		insert into user(userId, userPwd, userName, userBirth, userPhone, userArea)
+		values(#{userId}, #{userPwd}, #{userName}, #{userBirth}, #{userPhone}, #{userArea});
+	</insert>
+	
+	<update id="updateUserInfo" parameterType="com.ssafy.dto.User">
+		update user set userPwd=#{userPwd}, userPhone=#{userPhone}, userArea=#{userArea}
+		where userId=#{userId}
+	</update>
+	
+	<delete id="deleteUserInfo" parameterType="com.ssafy.dto.User">
+		delete from user where userId=#{userId}
+	</delete>
+</mapper>
+
+
+

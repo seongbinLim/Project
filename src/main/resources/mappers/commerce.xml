@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/hrm.xml -->
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commerce"> <!-- mybatis는 namespace필수!! -->
+	<select id="selectAll" resultType="com.ssafy.dto.CommerceInfo" parameterType="java.util.HashMap">
+<![CDATA[
+        SELECT *
+        FROM (SELECT @ROWNUM:=@ROWNUM+1 AS num, A.* 
+        FROM (SELECT * FROM commerceinfo) A, (SELECT @ROWNUM:=0) B) C
+        WHERE c.num BETWEEN #{startNum} AND #{endNum} 
+    ]]>
+	</select>
+	<select id="selectCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM commerceinfo; 
+	</select>
+</mapper>
+
+
+
